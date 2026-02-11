@@ -53,7 +53,7 @@ def safe_eval(expr: str):
 	return eval(compile(node, "<ast>", mode="eval"))
 
 
-LOG_FILE = Path("Calculator - Agent Build\calculator_log.csv")
+LOG_FILE = Path("Calculator - Agent Build\calculator_log.csv") # type: ignore
 
 
 def log_entry(expression: str, result, filename: Path | str | None = None):
@@ -76,7 +76,7 @@ class Calculator:
 		master.title("Calculator")
 
 		self.value = StringVar()
-		self.entry = Entry(master, textvariable=self.value, justify=LEFT, font=(None, 18))
+		self.entry = Entry(master, textvariable=self.value, justify=LEFT, font=("Arial", 18))
 		self.entry.grid(row=0, column=0, columnspan=4, sticky="nsew", padx=5, pady=5)
 
 		buttons = [
@@ -88,16 +88,16 @@ class Calculator:
 
 		for (text, r, c) in buttons:
 			action = (lambda x=text: self.on_button(x))
-			b = Button(master, text=text, width=5, height=2, command=action, font=(None, 14))
+			b = Button(master, text=text, width=5, height=2, command=action, font=("Arial", 14))
 			b.grid(row=r, column=c, padx=3, pady=3, sticky="nsew")
 
-		clear = Button(master, text='C', width=5, height=2, command=self.clear, font=(None, 14))
+		clear = Button(master, text='C', width=5, height=2, command=self.clear, font=("Arial", 14))
 		clear.grid(row=5, column=0, columnspan=2, padx=3, pady=3, sticky="nsew")
 
-		back = Button(master, text='⌫', width=5, height=2, command=self.backspace, font=(None, 14))
+		back = Button(master, text='⌫', width=5, height=2, command=self.backspace, font=("Arial", 14))
 		back.grid(row=5, column=2, padx=3, pady=3, sticky="nsew")
 
-		plusminus = Button(master, text='±', width=5, height=2, command=self.plusminus, font=(None, 14))
+		plusminus = Button(master, text='±', width=5, height=2, command=self.plusminus, font=("Arial", 14))
 		plusminus.grid(row=5, column=3, padx=3, pady=3, sticky="nsew")
 
 		master.bind('<Return>', lambda e: self.on_button('='))
